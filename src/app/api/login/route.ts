@@ -8,8 +8,6 @@ export async function POST(req: Request) {
   const { email, password } = body;
 
   try {
-    console.log("Tentativa de login:", { email, password });
-
     const user = await prisma.user.findUnique({
       where: { email },
     });
@@ -27,8 +25,6 @@ export async function POST(req: Request) {
         { status: 401 }
       );
     }
-
-    console.log("Usuário autenticado:", user);
 
     return NextResponse.json({
       message: "Login realizado com sucesso!",

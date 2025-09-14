@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -20,6 +21,8 @@ export default function Login() {
     });
 
     if (res.ok) {
+      const data = await res.json();
+      localStorage.setItem("user", JSON.stringify(data.user));
       router.push("/dashboard");
     } else {
       const data = await res.json();
@@ -29,7 +32,15 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-900">
-      <h1 className="text-2xl font-bold text-gray-400 mb-6">Login</h1>
+      <Image
+        className=""
+        src="/favicon.ico"
+        alt="logo"
+        width={180}
+        height={38}
+        priority
+      />
+      <h1 className="text-2xl font-bold text-gray-400 mb-4">Login</h1>
       <form onSubmit={handleLogin} className="w-full max-w-sm space-y-4">
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <input

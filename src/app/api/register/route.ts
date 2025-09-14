@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 export async function POST(req: Request) {
   const body = await req.json();
   const { name, email, phone, password } = body;
-  console.log(name, email, phone, password);
   try {
     const userExists = await prisma.user.findUnique({
       where: { email },

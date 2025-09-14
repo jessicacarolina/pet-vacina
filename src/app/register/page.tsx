@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -33,6 +34,14 @@ export default function Register() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-900">
+      <Image
+        className=""
+        src="/favicon.ico"
+        alt="logo"
+        width={180}
+        height={38}
+        priority
+      />
       <h1 className="text-2xl font-bold text-gray-400 mb-6">Cadastro</h1>
       <form onSubmit={handleRegister} className="w-full max-w-sm space-y-4">
         {error && <p className="text-red-500 text-sm">{error}</p>}
