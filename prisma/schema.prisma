@@ -1,3 +1,13 @@
+model VaccineCatalog {
+  id          Int       @id @default(autoincrement())
+  name        String
+  fabricante  String
+  descricao   String?
+  faixaEtaria String?
+  dose        String?
+  vaccines    Vaccine[]
+}
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,4 +23,27 @@ model User {
   email    String @unique
   phone    String
   password String
+  pets     Pet[]
+}
+
+model Pet {
+  id             Int       @id @default(autoincrement())
+  name           String
+  especie        String
+  raca           String?
+  cor            String?
+  dataNascimento DateTime
+  owner          User      @relation(fields: [ownerId], references: [id])
+  ownerId        Int
+  vaccines       Vaccine[]
+}
+
+model Vaccine {
+  id               Int            @id @default(autoincrement())
+  name             String
+  date             DateTime
+  pet              Pet            @relation(fields: [petId], references: [id])
+  petId            Int
+  vaccineCatalog   VaccineCatalog @relation(fields: [vaccineCatalogId], references: [id])
+  vaccineCatalogId Int
 }
