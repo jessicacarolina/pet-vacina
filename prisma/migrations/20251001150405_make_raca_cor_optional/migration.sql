@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Pet" ADD COLUMN "cor" TEXT;
+ALTER TABLE "Pet" ADD COLUMN "raca" TEXT;
